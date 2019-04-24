@@ -14,11 +14,15 @@
             <div class="user-profile-menu">
                 <h3>Plans</h3>
                 <ul>
-                    <li><a href="{{route('user_wishlist')}}"><i class="fa fa-th-list"></i> My wishlist</a></li>
+                    <li><a href="{{route('wishlist')}}"><i class="fa fa-th-list"></i> My wishlist</a></li>
                 </ul>
             </div>
             <!-- user-profile-menu end-->
-            <a href="#" class="log-out-btn">Log Out</a>
+            <a href="{{ route('logout') }}" class="log-out-btn" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">Log Out</a>
+            <form method="post" action="{{ route('logout') }}" id="logout-form" style="display: none">
+                @csrf
+            </form>
         </div>
     </div>
 </div>

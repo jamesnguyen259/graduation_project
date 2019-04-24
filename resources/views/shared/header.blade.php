@@ -1,7 +1,7 @@
 <header class="main-header dark-header fs-header sticky">
     <div class="header-inner">
         <div class="logo-holder">
-            <a href="{{route('home')}}"><img src="images/logo.png" alt=""></a>
+            <a href="{{route('home')}}"><img src="{{asset('images/logo.png')}}" alt=""></a>
         </div>
         <div class="header-search vis-header-search">
             <div class="header-search-input-item">
@@ -31,10 +31,9 @@
             </div>
             <ul>
                 <li><a href="{{route('user_edit')}}"> Edit profile</a></li>
-                <li><a href="{{route('user_wishlist')}}"> Wishlist</a></li>
+                <li><a href="{{route('wishlist')}}"> Wishlist</a></li>
                 <li><a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">Log Out</a>
+                    onclick="return logout(event);">Log Out</a>
                     <form method="post" action="{{ route('logout') }}" id="logout-form" style="display: none">
                     @csrf
                     </form>
@@ -60,10 +59,14 @@
                         <a href="#">Explore<i class="fa fa-caret-down"></i></a>
                         <!--second level -->
                         <ul>
-                            <li><a href="{{route('places')}}">Places</a></li>
-                            <li><a href="{{route('events')}}">Events</a></li>
-                            <li><a href="{{route('place_details')}}">Place Details</a></li>
-                            <li><a href="{{route('event_details')}}">Event Details</a></li>
+                            <li><a href="#">Places<i class="fa fa-caret-down"></i></a>
+                                <ul>
+                                    <li><a href="{{ url('/places/hotels') }}">Hotels</a></li>
+                                    <li><a href="{{ url('/places/restaurants') }}">Restaurants</a></li>
+                                    <li><a href="{{ url('/places/famous_places') }}">Famous places</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{{ url('/events') }}">Events</a></li>
                         </ul>
                         <!--second level end-->
                     </li>
@@ -76,3 +79,12 @@
         <!-- navigation  end -->
     </div>
 </header>
+<script type="text/javascript">
+    function logout(event){
+        event.preventDefault();
+        var check = confirm("Do you really want to logout?")
+        if (check){
+            document.getElementById('logout-form').submit();
+        }
+    }
+</script>

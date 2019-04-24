@@ -599,7 +599,7 @@ function initCitybook() {
         var countCurrent = $(".counter-widget").attr("data-countDate");
         $(".countdown").downCount({
             date: countCurrent ,
-            offset: 0
+            offset: 7
         });
     }
 }

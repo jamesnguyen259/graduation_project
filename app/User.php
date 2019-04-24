@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Event;
+use App\Hotel;
+use App\Restaurant;
 
 class User extends Authenticatable
 {
@@ -37,7 +40,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // public function identities() {
-    //     return $this->hasMany('App\FacebookAccount');
-    // }
+    public function wishlistEvents()
+    {
+        return $this->morphedByMany(Event::class, 'wishlistable')
+                    ->withPivot(['created_at'])
+                    ->orderBy('pivot_created_at', 'desc');
+    }
+
+    public function wishlistHotels()
+    {
+        return $this->morphedByMany(Hotel::class, 'wishlistable')
+                    ->withPivot(['created_at'])
+                    ->orderBy('pivot_created_at', 'desc');
+    }
+
+    public function wishlistRestaurants()
+    {
+        return $this->morphedByMany(Restaurant::class, 'wishlistable')
+                    ->withPivot(['created_at'])
+                    ->orderBy('pivot_created_at', 'desc');
+    }
+
+    public function wishlistFamousPlaces()
+    {
+        return $this->morphedByMany(FamousPlace::class, 'wishlistable')
+                    ->withPivot(['created_at'])
+                    ->orderBy('pivot_created_at', 'desc');
+    }
 }

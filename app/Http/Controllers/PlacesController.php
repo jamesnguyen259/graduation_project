@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Hotel;
+use App\Restaurant;
+use App\FamousPlace;
 
 class PlacesController extends Controller
 {
@@ -11,9 +14,18 @@ class PlacesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($type)
     {
-        return view('places.index');
+        if ($type == "hotels") {
+            $hotels = Hotel::paginate(9);
+            return view('hotels.index', ['hotels' => $hotels]);
+        } elseif ($type == "restaurants") {
+            $restaurants = Restaurant::paginate(9);
+            return view('restaurants.index', ['restaurants' => $restaurants]);
+        } elseif ($type == "famous_places") {
+            $famous_places = FamousPlace::paginate(9);
+            return view('famousplaces.index', ['famous_places' => $famous_places]);
+        }
     }
 
     /**
@@ -43,9 +55,19 @@ class PlacesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($type, $id)
     {
-        return view('places.show');
+        if ($type == "hotels") {
+            $hotel = Hotel::find($id);
+            return view('hotels.show', ['hotel' => $hotel]);
+        } elseif ($type == "restaurants") {
+            $restaurant = Restaurant::find($id);
+            return view('restaurants.show', ['restaurant' => $restaurant]);
+        } elseif ($type == "famous_places") {
+            $famous_place = FamousPlace::find($id);
+            return view('famousplaces.show', ['famous_place' => $famous_place]);
+        // return view('places.show');
+        }
     }
 
     /**
@@ -81,4 +103,41 @@ class PlacesController extends Controller
     {
         //
     }
+
+    public function addHotelToWishlist(Request $request, Hotel $hotel)
+    {
+        $request->user()->wishlistHotels()->syncWithoutDetaching([$hotel->id]);
+        return back();
+    }
+
+    public function removeHotelFromWishlist(Request $request, Hotel $hotel)
+    {
+        $request->user()->wishlistHotels()->detach($hotel);
+        return back();
+    }
+
+    public function addRestaurantToWishlist(Request $request, Restaurant $restaurant)
+    {
+        $request->user()->wishlistRestaurants()->syncWithoutDetaching([$restaurant->id]);
+        return back();
+    }
+
+    public function removeRestaurantFromWishlist(Request $request, Restaurant $restaurant)
+    {
+        $request->user()->wishlistRestaurants()->detach($restaurant);
+        return back();
+    }
+
+    public function addFamousPlaceToWishlist(Request $request, FamousPlace $famous_place)
+    {
+        $request->user()->wishlistFamousPlaces()->syncWithoutDetaching([$famous_place->id]);
+        return back();
+    }
+
+    public function removeFamousPlaceFromWishlist(Request $request, FamousPlace $famous_place)
+    {
+        $request->user()->wishlistFamousPlaces()->detach($famous_place);
+        return back();
+    }
+
 }
