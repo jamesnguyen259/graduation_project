@@ -178,7 +178,7 @@
 @endsection
 
 @section('script')
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBz1zNoF9K68XtaJ_rhFNKLNQXKZcUc_Uo"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key={{env('GOOGLE_API_KEY')}}"></script>
 <script type="text/javascript" src="{{asset('js/maps.js')}}"></script>
 <script type="text/javascript">
     $(function(){
