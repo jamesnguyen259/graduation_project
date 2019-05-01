@@ -33,7 +33,7 @@
                 </div>
                 <!-- listsearch-input-wrap  -->
                 <div class="listsearch-input-wrap fl-wrap">
-                    <form action="/search/events" method="get">
+                    <form action="/search/events" method="get" accept-charset="utf-8">
                         <div class="listsearch-input-item">
                             <i class="mbri-key single-i"></i>
                             <input type="text" placeholder="Keywords?" name="keyword" value="">
@@ -121,7 +121,7 @@
 <!--  section  end-->
 <div class="limit-box fl-wrap"></div>
 <!--  section  -->
-<section class="gradient-bg">
+<!-- <section class="gradient-bg">
     <div class="cirle-bg">
         <div class="bg" data-bg="asset('images/bg/circle.png')"></div>
     </div>
@@ -136,6 +136,6 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!--  section  end-->
 @endsection

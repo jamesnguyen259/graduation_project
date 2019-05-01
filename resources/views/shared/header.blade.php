@@ -10,10 +10,9 @@
             <div class="header-search-select-item">
                 <select data-placeholder="All Categories" class="chosen-select" >
                     <option>All Categories</option>
-                    <option>Shops</option>
                     <option>Hotels</option>
                     <option>Restaurants</option>
-                    <option>Fitness</option>
+                    <option>Famous places</option>
                     <option>Events</option>
                 </select>
             </div>
@@ -70,9 +69,9 @@
                         </ul>
                         <!--second level end-->
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="#">News</a>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
         </div>

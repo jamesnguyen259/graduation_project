@@ -3,12 +3,12 @@
 @section('content')
 <!--  section  -->
 <section class="parallax-section" data-scrollax-parent="true">
-    <div class="bg par-elem "  data-bg="https://stmed.net/sites/default/files/hotel-wallpapers-28644-5356899.jpg" data-scrollax="properties: { translateY: '30%' }"></div>
+    <div class="bg par-elem "  data-bg="https://www.hanoicitybreaks.com/wp-content/uploads/2010/04/Hoan-Kiem-Lake.jpg" data-scrollax="properties: { translateY: '30%' }"></div>
     <div class="overlay"></div>
     <div class="container">
         <div class="section-title center-align">
-            <h2><span>Listings All Hotels</span></h2>
-            <div class="breadcrumbs fl-wrap"><a href="#">Home</a><a href="#">Listings</a><span>Listings All Hotels</span></div>
+            <h2><span>Listings All Famous Places</span></h2>
+            <div class="breadcrumbs fl-wrap"><a href="#">Home</a><a href="#">Listings</a><span>Listings All Famous Places</span></div>
             <span class="section-separator"></span>
         </div>
     </div>
@@ -23,7 +23,7 @@
         <div class="container">
             <div class="listsearch-maiwrap box-inside fl-wrap">
                 <div class="listsearch-header fl-wrap">
-                    <h3>Results For : <span>All Hotels</span></h3>
+                    <h3>Results For : <span>{{$keyword}}</span></h3>
                     <div class="listing-view-layout">
                         <ul>
                             <li><a class="grid active" href="#"><i class="fa fa-th-large"></i></a></li>
@@ -33,10 +33,10 @@
                 </div>
                 <!-- listsearch-input-wrap  -->
                 <div class="listsearch-input-wrap fl-wrap">
-                    <form action="/search/hotels" method="get">
+                    <form action="/search/famous_places" method="get">
                         <div class="listsearch-input-item">
                             <i class="mbri-key single-i"></i>
-                            <input type="text" name="keyword" placeholder="Keywords?" value="">
+                            <input name="keyword" type="text" placeholder="Keywords?" value="">
                         </div>
                         <div class="listsearch-input-item">
                             <select name="district" data-placeholder="districts" class="chosen-select" style="display: none;">
@@ -73,53 +73,12 @@
                                 <option>My Duc</option>
                             </select>
                         </div>
-                        <div class="listsearch-input-item">
-                            <select name="rating" data-placeholder="rating" class="chosen-select" style="display: none;">
-                                <option>All</option>
-                                <option>Not rated</option>
-                                <option>1 star</option>
-                                <option>2 stars</option>
-                                <option>3 stars</option>
-                                <option>4 stars</option>
-                                <option>5 stars</option>
-                            </select>
-                        </div>
-                        <!-- <div class="listsearch-input-text" id="autocomplete-container">
-                            <label><i class="mbri-map-pin"></i> Enter Addres </label>
-                            <input type="text" placeholder="Destination , Area , Street" id="autocomplete-input" class="qodef-archive-places-search" value="" autocomplete="off">
-                            <a href="#" class="loc-act qodef-archive-current-location"><i class="fa fa-dot-circle-o"></i></a>
-                        </div> -->
-                        <!-- hidden-listing-filter -->
-                        <!-- <div class="hidden-listing-filter fl-wrap" style=""> -->
-                            <!-- <div class="distance-input fl-wrap" style="">
-                                <div class="distance-title"> Radius around selected destination <span>1</span> km</div>
-                                <div class="distance-radius-wrap fl-wrap" style="">
-                                    <input class="distance-radius rangeslider--horizontal" type="range" min="1" max="100" step="1" value="1" data-title="Radius around selected destination" style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0;"><div class="rangeslider rangeslider--horizontal" id="js-rangeslider-0" style=""><div class="rangeslider__fill" style="width: 10px;"></div><div class="rangeslider__handle" style="left: 0px;"></div></div>
-                                </div>
-                            </div> -->
-                            <!-- Checkboxes -->
-                            <!-- <div class=" fl-wrap filter-tags">
-                                <h4>Filter by Tags</h4>
-                                <div class="filter-tags-wrap">
-                                    <input id="check-a" type="checkbox" name="check" checked="">
-                                    <label for="check-a">Elevator in building</label>
-                                </div>
-                                <div class="filter-tags-wrap">
-                                    <input id="check-b" type="checkbox" name="check">
-                                    <label for="check-b">Friendly workspace</label>
-                                </div>
-                                <div class="filter-tags-wrap">
-                                    <input id="check-c" type="checkbox" name="check">
-                                    <label for="check-c">Instant Book</label>
-                                </div>
-                                <div class="filter-tags-wrap">
-                                    <input id="check-d" type="checkbox" name="check">
-                                    <label for="check-d">Wireless Internet</label>
-                                </div>
-                            </div> -->
-                        <!-- </div> -->
-                        <!-- hidden-listing-filter end -->
-                        <button class="button fs-map-btn">Search</button>
+                    <!-- <div class="listsearch-input-text" id="autocomplete-container">
+                        <label><i class="mbri-map-pin"></i> Enter Addres </label>
+                        <input type="text" placeholder="Destination , Area , Street" id="autocomplete-input" class="qodef-archive-places-search" value="" autocomplete="off">
+                        <a href="#" class="loc-act qodef-archive-current-location"><i class="fa fa-dot-circle-o"></i></a>
+                    </div> -->
+                        <button type="submit" class="button fs-map-btn">Search</button>
                     </form>
                     <!-- <div class="more-filter-option">More Filters <span></span></div> -->
                 </div>
@@ -128,31 +87,21 @@
             <!-- list-main-wrap-->
             <div class="list-main-wrap fl-wrap card-listing">
                 <!-- listing-item -->
-                @foreach($hotels as $hotel)
+                @foreach($famous_places as $famous_place)
                 <div class="listing-item">
                     <article class="geodir-category-listing fl-wrap">
                         <div class="geodir-category-img">
-                            <img src="{{$hotel->image_url}}" alt="">
+                            <img src="{{$famous_place->image_url}}" alt="">
                             <div class="overlay"></div>
                         </div>
                         <div class="geodir-category-content fl-wrap">
-                            <a class="listing-geodir-category" href="{{url('/places/hotels')}}">Hotels</a>
+                            <a class="listing-geodir-category" href="{{url('/places/famous_places')}}">Famous Places</a>
                             <!-- <div class="listing-avatar"><a href="author-single.html"><img src="images/avatar/5.jpg" alt=""></a>
                                 <span class="avatar-tooltip">Added By  <strong>Lisa Smith</strong></span>
                             </div> -->
-                            <h3><a href="{{url("/places/hotels/$hotel->id")}}">{{$hotel->name}}</a></h3>
+                            <h3><a href="{{url("/places/famous_places/$famous_place->id")}}">{{$famous_place->name}}</a></h3>
                             <div class="geodir-category-options fl-wrap">
-                                @if($hotel->rating != "Not rated")
-                                <div class="listing-rating card-popup-rainingvis" data-starrating2="{{$hotel->rating}}">
-                                </div>
-                                @else
-                                <div class="listing-rating card-popup-rainingvis" data-starrating2="0">
-                                Not rated</div>
-                                @endif
-                                <div class="geodir-category-location">
-                                    <!-- <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$hotel->location}}</a> -->
-                                    <h4><i class="fa fa-map-marker" aria-hidden="true"></i> {{$hotel->location}}</h4>
-                                </div>
+                                <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$famous_place->location}}</a></div>
                             </div>
                         </div>
                     </article>
@@ -160,7 +109,7 @@
                 @endforeach
                 <!-- listing-item end-->
                 <!-- pagination-->
-                {{$hotels->render('vendor.pagination.test')}}
+                {{$famous_places->render('vendor.pagination.test')}}
             </div>
             <!-- list-main-wrap end-->
         </div>
@@ -171,7 +120,7 @@
 <!--  section  -->
 <!-- <section class="gradient-bg">
     <div class="cirle-bg">
-        <div class="bg" data-bg="images/bg/circle.png"></div>
+        <div class="bg" data-bg="asset('images/bg/circle.png')"></div>
     </div>
     <div class="container">
         <div class="join-wrap fl-wrap">

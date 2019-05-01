@@ -16,4 +16,18 @@ class Restaurant extends Model
     {
         return $this->wishlists->contains($user);
     }
+
+    public function scopeIsWithinMaxDistance($query, $lat, $lng, $radius)
+    {
+        $haversine = "(6371 * acos(cos(radians($lat))
+            * cos(radians(restaurants.lat))
+            * cos(radians(restaurants.lng)
+            - radians($lng))
+            + sin(radians($lat))
+            * sin(radians(restaurants.lat))))";
+        return $query
+        ->select('restaurants.*')
+        ->selectRaw("{$haversine} AS distance")
+        ->whereRaw("{$haversine} < ?", [$radius]);
+    }
 }

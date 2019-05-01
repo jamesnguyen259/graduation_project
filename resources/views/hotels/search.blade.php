@@ -23,7 +23,7 @@
         <div class="container">
             <div class="listsearch-maiwrap box-inside fl-wrap">
                 <div class="listsearch-header fl-wrap">
-                    <h3>Results For : <span>All Hotels</span></h3>
+                    <h3>Results For : <span>{{$keyword}}</span></h3>
                     <div class="listing-view-layout">
                         <ul>
                             <li><a class="grid active" href="#"><i class="fa fa-th-large"></i></a></li>
@@ -149,10 +149,7 @@
                                 <div class="listing-rating card-popup-rainingvis" data-starrating2="0">
                                 Not rated</div>
                                 @endif
-                                <div class="geodir-category-location">
-                                    <!-- <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$hotel->location}}</a> -->
-                                    <h4><i class="fa fa-map-marker" aria-hidden="true"></i> {{$hotel->location}}</h4>
-                                </div>
+                                <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$hotel->location}}</a></div>
                             </div>
                         </div>
                     </article>

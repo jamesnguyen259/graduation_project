@@ -82,6 +82,10 @@
                                 <option>Pick a date</option>
                             </select>
                         </div>
+                        <div class="listsearch-input-item">
+                            <i class="mbri-key single-i"></i>
+                            <input type="text" placeholder="Date" class="datepicker" data-large-mode="true" data-large-default="true" value=""/>
+                        </div>
                         <button type="submit" class="button fs-map-btn">Search</button>
                     </form>
                 </div>
@@ -121,7 +125,7 @@
 <!--  section  end-->
 <div class="limit-box fl-wrap"></div>
 <!--  section  -->
-<section class="gradient-bg">
+<!-- <section class="gradient-bg">
     <div class="cirle-bg">
         <div class="bg" data-bg="asset('images/bg/circle.png')"></div>
     </div>
@@ -136,6 +140,6 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!--  section  end-->
 @endsection

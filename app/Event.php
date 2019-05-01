@@ -16,4 +16,18 @@ class Event extends Model
     {
         return $this->wishlists->contains($user);
     }
+
+    public function scopeIsWithinMaxDistance($query, $lat, $lng, $radius)
+    {
+        $haversine = "(6371 * acos(cos(radians($lat))
+            * cos(radians(events.lat))
+            * cos(radians(events.lng)
+            - radians($lng))
+            + sin(radians($lat))
+            * sin(radians(events.lat))))";
+        return $query
+        ->select('events.*')
+        ->selectRaw("{$haversine} AS distance")
+        ->whereRaw("{$haversine} < ?", [$radius]);
+    }
 }

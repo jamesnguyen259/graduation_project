@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Socialite;
 use App\User;
 use App\FacebookAccount;
@@ -23,12 +24,20 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    protected function authenticated(Request $request, $user)
+    {
+        $notification = array(
+            'message' => 'Sign-in successful!',
+            'alert-type' => 'success'
+        );
+        return redirect('/')->with($notification);
+    }
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    // protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -55,7 +64,11 @@ class LoginController extends Controller
 
         $authUser = $this->findOrCreateUser($user, $provider);
         auth()->login($authUser, true);
-        return redirect('/');
+        $notification = array(
+            'message' => 'Sign-in successful!',
+            'alert-type' => 'success'
+        );
+        return redirect('/')->with($notification);
     }
 
 

@@ -66,6 +66,32 @@
                             {{$event->description}}
                             <a href="{{$event->source_url}}" class="btn transparent-btn float-btn">Visit website<i class="fa fa-file-pdf-o"></i></a>
                         </div>
+                        <div class="list-single-main-item fl-wrap">
+                            <div class="list-single-main-item-title fl-wrap">
+                                <h3>Explore things near by this event? </h3>
+                            </div>
+                            <div class="listsearch-input-wrap fl-wrap">
+                                <form action="{{route('find.near.by.event', $event->id)}}" method="GET">
+                                    <div class="listsearch-input-item">
+                                        <select name="category" data-placeholder="category" class="chosen-select" style="display: none;">
+                                            <option>Restaurants</option>
+                                            <option>Hotels</option>
+                                            <option>Famous places</option>
+                                            <option>Events</option>
+                                        </select>
+                                    </div>
+                                    <!-- </div> -->
+                                    <div class="distance-input fl-wrap" style="">
+                                        <div class="distance-title"> Radius around selected destination <span>1</span> km</div>
+                                        <div class="distance-radius-wrap fl-wrap" style="">
+                                            <input name="distance" class="distance-radius rangeslider--horizontal" type="range" min="0.1" max="3" step="0.1" value="0.1" data-title="Radius around selected destination" style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0;"><div class="rangeslider rangeslider--horizontal" id="js-rangeslider-0" style=""><div class="rangeslider__fill" style="width: 10px;"></div><div class="rangeslider__handle" style="left: 0px;"></div></div>
+                                        </div>
+                                    </div>
+                                    <span class="section-separator"></span>
+                                    <button type="submit" class="button fs-map-btn">Go!</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!--box-widget-wrap -->
@@ -198,6 +224,32 @@
                                 {{$event->description}}
                                 <a href="{{$event->source_url}}" class="btn transparent-btn float-btn">Visit website<i class="fa fa-file-pdf-o"></i></a>
                             </div>
+                            <div class="list-single-main-item fl-wrap">
+                                <div class="list-single-main-item-title fl-wrap">
+                                    <h3>Explore things near by this event? </h3>
+                                </div>
+                                <div class="listsearch-input-wrap fl-wrap">
+                                    <form action="{{route('find.near.by.event', $event->id)}}" method="GET">
+                                        <div class="listsearch-input-item">
+                                            <select name="category" data-placeholder="category" class="chosen-select" style="display: none;">
+                                                <option>Restaurants</option>
+                                                <option>Hotels</option>
+                                                <option>Famous places</option>
+                                                <option>Events</option>
+                                            </select>
+                                        </div>
+                                        <!-- </div> -->
+                                        <div class="distance-input fl-wrap" style="">
+                                            <div class="distance-title"> Radius around selected destination <span>1</span> km</div>
+                                            <div class="distance-radius-wrap fl-wrap" style="">
+                                                <input name="distance" class="distance-radius rangeslider--horizontal" type="range" min="0.1" max="3" step="0.1" value="0.1" data-title="Radius around selected destination" style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0;"><div class="rangeslider rangeslider--horizontal" id="js-rangeslider-0" style=""><div class="rangeslider__fill" style="width: 10px;"></div><div class="rangeslider__handle" style="left: 0px;"></div></div>
+                                            </div>
+                                        </div>
+                                        <span class="section-separator"></span>
+                                        <button type="submit" class="button fs-map-btn">Go!</button>
+                                    </form>
+                                </div>
+                        </div>
                         </div>
                     </div>
                     <!--box-widget-wrap -->
@@ -288,7 +340,7 @@
     @endif
 
 @endif
-<section class="gradient-bg">
+<!-- <section class="gradient-bg">
     <div class="cirle-bg">
         <div class="bg" data-bg="images/bg/circle.png"></div>
     </div>
@@ -303,7 +355,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- section end-->
 @endsection
 

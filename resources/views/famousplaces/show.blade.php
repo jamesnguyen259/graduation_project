@@ -90,7 +90,6 @@
                                         </div>
                                         <h2>{{$famous_place->name}}</h2>
                                         <span class="section-separator"></span>
-                                        <div class="list-post-counter single-list-post-counter"><span>4</span><i class="fa fa-heart"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -103,6 +102,32 @@
                         </div>
                         {{$famous_place->description}}
                         <a href="{{$famous_place->source_url}}" class="btn transparent-btn float-btn">Visit Website <i class="fa fa-angle-right"></i></a>
+                    </div>
+                    <div class="list-single-main-item fl-wrap">
+                        <div class="list-single-main-item-title fl-wrap">
+                            <h3>Explore things near by this place? </h3>
+                        </div>
+                        <div class="listsearch-input-wrap fl-wrap">
+                            <form action="{{route('find.near.by', ['type' => 'famous_places', 'id' => $famous_place->id] )}}" method="GET">
+                                <div class="listsearch-input-item">
+                                    <select name="category" data-placeholder="category" class="chosen-select" style="display: none;">
+                                        <option>Restaurants</option>
+                                        <option>Hotels</option>
+                                        <option>Famous places</option>
+                                        <option>Events</option>
+                                    </select>
+                                </div>
+                                <!-- </div> -->
+                                <div class="distance-input fl-wrap" style="">
+                                    <div class="distance-title"> Radius around selected destination <span>1</span> km</div>
+                                    <div class="distance-radius-wrap fl-wrap" style="">
+                                        <input name="distance" class="distance-radius rangeslider--horizontal" type="range" min="0.1" max="3" step="0.1" value="0.1" data-title="Radius around selected destination" style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0;"><div class="rangeslider rangeslider--horizontal" id="js-rangeslider-0" style=""><div class="rangeslider__fill" style="width: 10px;"></div><div class="rangeslider__handle" style="left: 0px;"></div></div>
+                                    </div>
+                                </div>
+                                <span class="section-separator"></span>
+                                <button type="submit" class="button fs-map-btn">Go!</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -151,24 +176,6 @@
 </section>
 <!--  section  end-->
 <div class="limit-box fl-wrap"></div>
-<!--  section   -->
-<section class="gradient-bg">
-    <div class="cirle-bg">
-        <div class="bg" data-bg="images/bg/circle.png"></div>
-    </div>
-    <div class="container">
-        <div class="join-wrap fl-wrap">
-            <div class="row">
-                <div class="col-md-8">
-                    <h3>Join our online community</h3>
-                    <p>Grow your marketing and be happy with your online business</p>
-                </div>
-                <div class="col-md-4"><a href="#" class="join-wrap-btn modal-open">Sign Up <i class="fa fa-sign-in"></i></a></div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--  section  end-->
 @endsection
 
 @section('script')

@@ -2,7 +2,7 @@
 
 @section('content')
 <!--  section  -->
-<section class="parallax-section" data-scrollax-parent="true">
+<!-- <section class="parallax-section" data-scrollax-parent="true">
     <div class="bg par-elem "  data-bg="https://thumbor.mumu.agency/unsafe/1000x562/https://www.theransomnote.com/media/articles/rare-african-music-tops-trendbases-restaurant-background-music-charts/4ca464fe-54ae-457f-8680-702aaa8a13ab.jpg" data-scrollax="properties: { translateY: '30%' }"></div>
     <div class="overlay"></div>
     <div class="container">
@@ -15,7 +15,7 @@
     <div class="header-sec-link">
         <div class="container"><a href="#sec1" class="custom-scroll-link">Let's Start</a></div>
     </div>
-</section>
+</section> -->
 <!--  section  end-->
 <!--  section  -->
 <section class="gray-bg no-pading no-top-padding" id="sec1">
@@ -23,7 +23,7 @@
         <div class="container">
             <div class="listsearch-maiwrap box-inside fl-wrap">
                 <div class="listsearch-header fl-wrap">
-                    <h3>Results For : <span>All restaurants</span></h3>
+                    <h3>Restaurants near by <span> {{$name}}</span> with <span>{{$distance}}</span> km</h3>
                     <div class="listing-view-layout">
                         <ul>
                             <li><a class="grid active" href="#"><i class="fa fa-th-large"></i></a></li>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <!-- listsearch-input-wrap  -->
-                <div class="listsearch-input-wrap fl-wrap">
+                <!-- <div class="listsearch-input-wrap fl-wrap">
                     <form action="/search/restaurants" method="get">
                         <div class="listsearch-input-item">
                             <i class="mbri-key single-i"></i>
@@ -73,31 +73,19 @@
                                 <option>My Duc</option>
                             </select>
                         </div>
-                    <!-- <div class="listsearch-input-item">
-                        <select data-placeholder="rating" class="chosen-select" style="display: none;">
-                            <option>All</option>
-                            <option>Not rated</option>
-                            <option>1 star</option>
-                            <option>2 stars</option>
-                            <option>3 stars</option>
-                            <option>4 stars</option>
-                            <option>5 stars</option>
-                        </select>
-                    </div> -->
                         <button type="submit" class="button fs-map-btn">Search</button>
                     </form>
-                    <!-- <div class="more-filter-option">More Filters <span></span></div> -->
-                </div>
+                </div> -->
                 <!-- listsearch-input-wrap end -->
             </div>
             <!-- list-main-wrap-->
             <div class="list-main-wrap fl-wrap card-listing">
                 <!-- listing-item -->
-                @foreach($restaurants as $restaurant)
+                @foreach($restaurant_results as $restaurant_result)
                 <div class="listing-item">
                     <article class="geodir-category-listing fl-wrap">
                         <div class="geodir-category-img">
-                            <img src="{{$restaurant->image_url}}" alt="">
+                            <img src="{{$restaurant_result->image_url}}" alt="">
                             <div class="overlay"></div>
                         </div>
                         <div class="geodir-category-content fl-wrap">
@@ -105,17 +93,18 @@
                             <!-- <div class="listing-avatar"><a href="author-single.html"><img src="images/avatar/5.jpg" alt=""></a>
                                 <span class="avatar-tooltip">Added By  <strong>Lisa Smith</strong></span>
                             </div> -->
-                            <h3><a href="{{url("/places/restaurants/$restaurant->id")}}">{{$restaurant->name}}</a></h3>
+                            <h3><a href="{{url("/places/restaurants/$restaurant_result->id")}}">{{$restaurant_result->name}}</a></h3>
                             <div class="geodir-category-options fl-wrap">
-                                <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$restaurant->location}}</a></div>
+                                <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$restaurant_result->location}}</a></div>
                             </div>
                         </div>
                     </article>
                 </div>
                 @endforeach
                 <!-- listing-item end-->
+                {{$restaurant_results->render('vendor.pagination.test')}}
                 <!-- pagination-->
-                {{$restaurants->render('vendor.pagination.test')}}
+
             </div>
             <!-- list-main-wrap end-->
         </div>
@@ -123,22 +112,4 @@
 </section>
 <!--  section  end-->
 <div class="limit-box fl-wrap"></div>
-<!--  section  -->
-<!-- <section class="gradient-bg">
-    <div class="cirle-bg">
-        <div class="bg" data-bg="images/bg/circle.png"></div>
-    </div>
-    <div class="container">
-        <div class="join-wrap fl-wrap">
-            <div class="row">
-                <div class="col-md-8">
-                    <h3>Join our online community</h3>
-                    <p>Grow your marketing and be happy with your online business</p>
-                </div>
-                <div class="col-md-4"><a href="#" class="join-wrap-btn modal-open">Sign Up <i class="fa fa-sign-in"></i></a></div>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!--  section  end-->
 @endsection

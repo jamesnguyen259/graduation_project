@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Event;
 use Carbon\Carbon;
 use App\User;
+use App\Hotel;
+use App\Restaurant;
+use App\FamousPlace;
 
 class EventsController extends Controller
 {
@@ -17,7 +20,12 @@ class EventsController extends Controller
     public function index()
     {
         $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
-        $events = Event::where('start_time', '>', $now)->orderBy('start_time', 'asc')->paginate(9);
+        $events = Event::where('start_time', '>', $now)
+            ->orWhere(function($query) use ($now){
+                $query->where('start_time', '<', $now)
+                ->where('end_time', '>', $now);
+        })
+            ->orderBy('start_time', 'asc')->paginate(9);
         return view('events.index', ['events' => $events, 'now' => $now]);
     }
 
@@ -97,8 +105,12 @@ class EventsController extends Controller
 
     public function removeEventFromWishlist(Request $request, Event $event)
     {
+        $notification = array(
+            'message' => 'Deleted item successfully!',
+            'alert-type' => 'success'
+        );
         $request->user()->wishlistEvents()->detach($event);
-        return back();
+        return back()->with($notification);
     }
 
     public function search(Request $request)
@@ -106,6 +118,15 @@ class EventsController extends Controller
         $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
         $today = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
         $tomorrow = Carbon::tomorrow('Asia/Ho_Chi_Minh')->toDateString();
+
+        $monday = Carbon::now('Asia/Ho_Chi_Minh')->startOfWeek();
+        $tuesday = $monday->copy()->addDay();
+        $wednesday = $tuesday->copy()->addDay();
+        $thursday = $wednesday->copy()->addDay();
+        $friday = $thursday->copy()->addDay();
+        $saturday = $friday->copy()->addDay()->toDateString();
+
+        $weekend = Carbon::now('Asia/Ho_Chi_Minh')->endOfWeek()->toDateString();
         $keyword = $request->get('keyword');
         $district = $request->get('district');
         $date = $request->get('date');
@@ -126,6 +147,7 @@ class EventsController extends Controller
                     // return dd($events);
                     break;
                 case 'This weekend':
+                    $events = $events->whereDate('start_time', '=', $saturday)->orderBy('start_time', 'asc')->paginate(9);
                     break;
                 default:
                     # code...
@@ -135,7 +157,8 @@ class EventsController extends Controller
 
         elseif ($date == "All") { //district != All districts
             # code...
-            $events = $events->where('location', 'like', '%'.$district.'%')->orderBy('start_time', 'asc')->paginate(9);
+            // $district = strtolower($district);
+            $events = $events->whereRaw('LOWER(`location`) like ?', ['%'.strtolower($district).'%'])->orderBy('start_time', 'asc')->paginate(9);
         }
 
         else{
@@ -149,6 +172,7 @@ class EventsController extends Controller
                     // return dd($events);
                     break;
                 case 'This weekend':
+                    $events = $events->where('location', 'like', '%'.$district.'%')->whereDate('start_time', '=', $saturday)->orderBy('start_time', 'asc')->paginate(9);
                     break;
                 default:
                     # code...
@@ -158,5 +182,40 @@ class EventsController extends Controller
 
         $events->appends(array('keyword' => $keyword, 'district' => $district, 'date' => $date));
         return view('events.search', ['events' => $events, 'keyword' => $keyword]);
+    }
+
+    public function findNearBy(Request $request, $id){
+        $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
+        $distance = $request->distance;
+        $category = $request->category;
+        $event = Event::find($id);
+        $name = $event->name;
+        $lat = $event->lat;
+        $lng = $event->lng;
+        switch ($category) {
+                case 'Restaurants':
+                    $restaurant_results = Restaurant::IsWithinMaxDistance($lat, $lng, $distance)->paginate(9);
+                    $restaurant_results->appends(array('category' => $category, 'distance' => $distance));
+                    // dd($restaurant_results);
+                    return view('restaurants.nearby_results', ['restaurant_results' => $restaurant_results, 'name' => $name, 'distance' => $distance]);
+                    break;
+                case 'Hotels':
+                    $hotel_results = Hotel::IsWithinMaxDistance($lat, $lng, $distance)->paginate(9);
+                    $hotel_results->appends(array('category' => $category, 'distance' => $distance));
+                    return view('hotels.nearby_results', ['hotel_results' => $hotel_results, 'name' => $name, 'distance' => $distance]);
+                    break;
+                case 'Famous places':
+                    $famous_place_results = FamousPlace::IsWithinMaxDistance($lat, $lng, $distance)->paginate(9);
+                    $famous_place_results->appends(array('category' => $category, 'distance' => $distance));
+                    return view('famousplaces.nearby_results', ['famous_place_results' => $famous_place_results, 'name' => $name, 'distance' => $distance]);
+                case 'Events':
+                    $event_results = Event::IsWithinMaxDistance($lat, $lng, $distance)->where('start_time','>',$now)->paginate(9);
+                    $event_results->appends(array('category' => $category, 'distance' => $distance));
+                    return view('events.nearby_results', ['event_results' => $event_results, 'name' => $name, 'distance' => $distance]);
+                    break;
+                default:
+                    break;
+            }
+
     }
 }

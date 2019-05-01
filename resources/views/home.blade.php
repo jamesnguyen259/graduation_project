@@ -6,7 +6,7 @@
     <div class="slider-container-wrap fl-wrap">
         <div class="slider-container">
             <!-- slideshow-item -->
-            <div class="slider-item fl-wrap">
+            <!-- <div class="slider-item fl-wrap">
                 <div class="bg"  data-bg="https://previews.123rf.com/images/booblgum/booblgum1801/booblgum180100302/93879241-hanoi-vietnam-city-skyline-with-gray-buildings-isolated-on-white-background-vector-illustration-busi.jpg"></div>
                 <div class="overlay"></div>
                 <div class="hero-section-wrap fl-wrap">
@@ -20,17 +20,47 @@
                                 <div class="main-search-input-item">
                                     <input type="text" placeholder="What are you looking for?" value=""/>
                                 </div>
-                                <div class="main-search-input-item location" id="autocomplete-container">
-                                    <input type="text" placeholder="Location" id="autocomplete-input" value=""/>
-                                    <a href="#"><i class="fa fa-dot-circle-o"></i></a>
+                                <div class="main-search-input-item location" >
+                                    <select data-placeholder="District" class="chosen-select" >
+                                        <option>All district</option>
+                                        <option>Ba Dinh </option>
+                                        <option>Hoan Kiem </option>
+                                        <option>Tay Ho</option>
+                                        <option>Long Bien</option>
+                                        <option>Cau Giay</option>
+                                        <option>Dong Da</option>
+                                        <option>Hai Ba Trung</option>
+                                        <option>Hoang Mai</option>
+                                        <option>Thanh Xuan</option>
+                                        <option>Soc Son</option>
+                                        <option>Dong Anh</option>
+                                        <option>Gia Lam</option>
+                                        <option>Nam Tu Liem</option>
+                                        <option>Thanh Tri</option>
+                                        <option>Bac Tu Liem</option>
+                                        <option>Me Linh</option>
+                                        <option>Ha Dong</option>
+                                        <option>Son Tay</option>
+                                        <option>Ba Vi</option>
+                                        <option>Phuc Tho</option>
+                                        <option>Dan Phuong</option>
+                                        <option>Hoai Duc</option>
+                                        <option>Quoc Oai</option>
+                                        <option>Thach That</option>
+                                        <option>Chuong My</option>
+                                        <option>Thanh Oai</option>
+                                        <option>Thuong Tin</option>
+                                        <option>Phu Xuyen</option>
+                                        <option>Ung Hoa</option>
+                                        <option>My Duc</option>
+                                    </select>
                                 </div>
                                 <div class="main-search-input-item">
                                     <select data-placeholder="All Categories" class="chosen-select" >
                                         <option>All Categories</option>
-                                        <option>Shops</option>
                                         <option>Hotels</option>
                                         <option>Restaurants</option>
-                                        <option>Fitness</option>
+                                        <option>Famous places</option>
                                         <option>Events</option>
                                     </select>
                                 </div>
@@ -39,7 +69,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!--  slideshow-item end  -->
             <!-- slideshow-item -->
             <div class="slider-item fl-wrap">
@@ -49,7 +79,7 @@
                     <div class="container">
                         <div class="intro-item fl-wrap">
                             <h2>Discover Our Categories</h2>
-                            <h3>Constant care and attention to the patients makes good record.</h3>
+                            <h3>You can find something interesting in Hanoi!</h3>
                         </div>
                         <span class="section-separator"></span>
                         <div class="box-cat-container">
@@ -83,8 +113,8 @@
             </div>
             <!--  slideshow-item end  -->
         </div>
-        <div class="swiper-button-prev sw-btn"><i class="fa fa-long-arrow-left"></i></div>
-        <div class="swiper-button-next sw-btn"><i class="fa fa-long-arrow-right"></i></div>
+        <!-- <div class="swiper-button-prev sw-btn"><i class="fa fa-long-arrow-left"></i></div> -->
+        <!-- <div class="swiper-button-next sw-btn"><i class="fa fa-long-arrow-right"></i></div> -->
     </div>
 </section>
 <!-- section end -->
@@ -107,14 +137,14 @@
                         <div class="listing-counter"><span>{{$restaurant_count}} </span> Locations</div>
                         <div class="listing-item-cat">
                             <h3><a href="{{url('/places/restaurants')}}">Restaurants</a></h3>
-                            <p>Constant care and attention to the patients makes good record</p>
+                            <p>Explore restaurants in Hanoi from lot of sources</p>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- gallery-item end-->
             <!-- gallery-item-->
-            <div class="gallery-item gallery-item-second">
+            <!-- <div class="gallery-item gallery-item-second">
                 <div class="grid-item-holder">
                     <div class="listing-item-grid">
                         <img  src="http://citybook.kwst.net/images/bg/19.jpg"   alt="">
@@ -125,7 +155,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- gallery-item end-->
             <!-- gallery-item-->
             <div class="gallery-item">
@@ -135,7 +165,7 @@
                         <div class="listing-counter"><span>{{$famous_place_count}} </span> Locations</div>
                         <div class="listing-item-cat">
                             <h3><a href="{{url('/places/famous_places')}}">Famous places</a></h3>
-                            <p>Constant care and attention to the patients makes good record</p>
+                            <p>Want to explore most famous places in Hanoi? Click here.</p>
                         </div>
                     </div>
                 </div>
@@ -149,14 +179,14 @@
                         <div class="listing-counter"><span>{{$hotel_count}} </span> Locations</div>
                         <div class="listing-item-cat">
                             <h3><a href="{{url('/places/hotels')}}">Hotels</a></h3>
-                            <p>Constant care and attention to the patients makes good record</p>
+                            <p>Find somewhere to relax by exploring hotels in Hanoi</p>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- gallery-item end-->
             <!-- gallery-item-->
-            <div class="gallery-item">
+            <!-- <div class="gallery-item">
                 <div class="grid-item-holder">
                     <div class="listing-item-grid">
                         <img  src="images/all/1.jpg"   alt="">
@@ -167,7 +197,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- gallery-item end-->
         </div>
         <!-- portfolio end -->

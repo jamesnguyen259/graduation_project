@@ -33,93 +33,54 @@
                 </div>
                 <!-- listsearch-input-wrap  -->
                 <div class="listsearch-input-wrap fl-wrap">
-                    <div class="listsearch-input-item">
-                        <i class="mbri-key single-i"></i>
-                        <input type="text" placeholder="Keywords?" value="">
-                    </div>
-                    <div class="listsearch-input-item">
-                        <select data-placeholder="districts" class="chosen-select" style="display: none;">
-                            <option>All districts</option>
-                            <option>Ba Dinh </option>
-                            <option>Hoan Kiem </option>
-                            <option>Tay Ho</option>
-                            <option>Long Bien</option>
-                            <option>Cau Giay</option>
-                            <option>Dong Da</option>
-                            <option>Hai Ba Trung</option>
-                            <option>Hoang Mai</option>
-                            <option>Thanh Xuan</option>
-                            <option>Soc Son</option>
-                            <option>Dong Anh</option>
-                            <option>Gia Lam</option>
-                            <option>Nam Tu Liem</option>
-                            <option>Thanh Tri</option>
-                            <option>Bac Tu Liem</option>
-                            <option>Me Linh</option>
-                            <option>Ha Dong</option>
-                            <option>Son Tay</option>
-                            <option>Ba Vi</option>
-                            <option>Phuc Tho</option>
-                            <option>Dan Phuong</option>
-                            <option>Hoai Duc</option>
-                            <option>Quoc Oai</option>
-                            <option>Thach That</option>
-                            <option>Chuong My</option>
-                            <option>Thanh Oai</option>
-                            <option>Thuong Tin</option>
-                            <option>Phu Xuyen</option>
-                            <option>Ung Hoa</option>
-                            <option>My Duc</option>
-                        </select>
-                    </div>
-                    <div class="listsearch-input-item">
-                        <select data-placeholder="rating" class="chosen-select" style="display: none;">
-                            <option>All</option>
-                            <option>Not rated</option>
-                            <option>1 star</option>
-                            <option>2 stars</option>
-                            <option>3 stars</option>
-                            <option>4 stars</option>
-                            <option>5 stars</option>
-                        </select>
-                    </div>
+                    <form action="/search/famous_places" method="get">
+                        <div class="listsearch-input-item">
+                            <i class="mbri-key single-i"></i>
+                            <input name="keyword" type="text" placeholder="Keywords?" value="">
+                        </div>
+                        <div class="listsearch-input-item">
+                            <select name="district" data-placeholder="districts" class="chosen-select" style="display: none;">
+                                <option>All districts</option>
+                                <option>Ba Dinh </option>
+                                <option>Hoan Kiem </option>
+                                <option>Tay Ho</option>
+                                <option>Long Bien</option>
+                                <option>Cau Giay</option>
+                                <option>Dong Da</option>
+                                <option>Hai Ba Trung</option>
+                                <option>Hoang Mai</option>
+                                <option>Thanh Xuan</option>
+                                <option>Soc Son</option>
+                                <option>Dong Anh</option>
+                                <option>Gia Lam</option>
+                                <option>Nam Tu Liem</option>
+                                <option>Thanh Tri</option>
+                                <option>Bac Tu Liem</option>
+                                <option>Me Linh</option>
+                                <option>Ha Dong</option>
+                                <option>Son Tay</option>
+                                <option>Ba Vi</option>
+                                <option>Phuc Tho</option>
+                                <option>Dan Phuong</option>
+                                <option>Hoai Duc</option>
+                                <option>Quoc Oai</option>
+                                <option>Thach That</option>
+                                <option>Chuong My</option>
+                                <option>Thanh Oai</option>
+                                <option>Thuong Tin</option>
+                                <option>Phu Xuyen</option>
+                                <option>Ung Hoa</option>
+                                <option>My Duc</option>
+                            </select>
+                        </div>
                     <!-- <div class="listsearch-input-text" id="autocomplete-container">
                         <label><i class="mbri-map-pin"></i> Enter Addres </label>
                         <input type="text" placeholder="Destination , Area , Street" id="autocomplete-input" class="qodef-archive-places-search" value="" autocomplete="off">
                         <a href="#" class="loc-act qodef-archive-current-location"><i class="fa fa-dot-circle-o"></i></a>
                     </div> -->
-                    <!-- hidden-listing-filter -->
-                    <div class="hidden-listing-filter fl-wrap" style="">
-                        <div class="distance-input fl-wrap" style="">
-                            <div class="distance-title"> Radius around selected destination <span>1</span> km</div>
-                            <div class="distance-radius-wrap fl-wrap" style="">
-                                <input class="distance-radius rangeslider--horizontal" type="range" min="1" max="100" step="1" value="1" data-title="Radius around selected destination" style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0;"><div class="rangeslider rangeslider--horizontal" id="js-rangeslider-0" style=""><div class="rangeslider__fill" style="width: 10px;"></div><div class="rangeslider__handle" style="left: 0px;"></div></div>
-                            </div>
-                        </div>
-                        <!-- Checkboxes -->
-                        <div class=" fl-wrap filter-tags">
-                            <h4>Filter by Tags</h4>
-                            <div class="filter-tags-wrap">
-                                <input id="check-a" type="checkbox" name="check" checked="">
-                                <label for="check-a">Elevator in building</label>
-                            </div>
-                            <div class="filter-tags-wrap">
-                                <input id="check-b" type="checkbox" name="check">
-                                <label for="check-b">Friendly workspace</label>
-                            </div>
-                            <div class="filter-tags-wrap">
-                                <input id="check-c" type="checkbox" name="check">
-                                <label for="check-c">Instant Book</label>
-                            </div>
-                            <div class="filter-tags-wrap">
-                                <input id="check-d" type="checkbox" name="check">
-                                <label for="check-d">Wireless Internet</label>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- hidden-listing-filter end -->
-                    <button class="button fs-map-btn">Update</button>
-                    <div class="more-filter-option">More Filters <span></span></div>
+                        <button type="submit" class="button fs-map-btn">Search</button>
+                    </form>
+                    <!-- <div class="more-filter-option">More Filters <span></span></div> -->
                 </div>
                 <!-- listsearch-input-wrap end -->
             </div>
@@ -157,7 +118,7 @@
 <!--  section  end-->
 <div class="limit-box fl-wrap"></div>
 <!--  section  -->
-<section class="gradient-bg">
+<!-- <section class="gradient-bg">
     <div class="cirle-bg">
         <div class="bg" data-bg="asset('images/bg/circle.png')"></div>
     </div>
@@ -172,6 +133,6 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!--  section  end-->
 @endsection
