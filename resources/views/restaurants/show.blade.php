@@ -92,16 +92,14 @@
                                         <span class="section-separator"></span>
                                         <!-- <div class="list-post-counter single-list-post-counter"><span>4</span><i class="fa fa-heart"></i></div> -->
                                     </div>
-                                    <!-- <div class="col-md-4">
+                                    <div class="col-md-4">
                                         <div class="fl-wrap list-single-header-column">
-                                            <span class="viewed-counter"><i class="fa fa-eye"></i> Viewed -  156 </span>
-                                            <a class="custom-scroll-link" href="#sec5"><i class="fa fa-hand-o-right"></i>Add Review </a>
                                             <div class="share-holder hid-share">
                                                 <div class="showshare"><span>Share </span><i class="fa fa-share"></i></div>
                                                 <div class="share-container  isShare"></div>
                                             </div>
                                         </div>
-                                    </div> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -188,24 +186,6 @@
 </section>
 <!--  section  end-->
 <div class="limit-box fl-wrap"></div>
-<!--  section   -->
-<!-- <section class="gradient-bg">
-    <div class="cirle-bg">
-        <div class="bg" data-bg="images/bg/circle.png"></div>
-    </div>
-    <div class="container">
-        <div class="join-wrap fl-wrap">
-            <div class="row">
-                <div class="col-md-8">
-                    <h3>Join our online community</h3>
-                    <p>Grow your marketing and be happy with your online business</p>
-                </div>
-                <div class="col-md-4"><a href="#" class="join-wrap-btn modal-open">Sign Up <i class="fa fa-sign-in"></i></a></div>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!--  section  end-->
 @endsection
 
 @section('script')

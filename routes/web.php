@@ -44,12 +44,15 @@ Route::get('/events/{id}/findnearby', 'EventsController@findNearBy')->name('find
 Route::post('/events/{event}/wishlists', 'EventsController@addEventToWishlist')->name('add.event.wishlist');
 Route::delete('/events/{event}/wishlists', 'EventsController@removeEventFromWishlist')->name('delete.event.wishlist');
 
-#Wishlist show
+#Wishlist
 Route::get('/wishlist', 'WishlistController@index')->name('wishlist');
+Route::post('/share-wishlist', 'WishlistController@addShare')->name('add.share.wishlist');
+Route::get('/shared-wishlist','WishlistController@showShared')->name('show.shared.wishlist');
 
 #Search and filter route
+Route::get('/search','HomeController@search');
 Route::get('/search/events/','EventsController@search');
-Route::get('/search/{types}', 'PlacesController@search');
+Route::get('/search/places/{types}', 'PlacesController@search');
 
 Route::get('/user_edit', function () {
     return view('users.edit');
@@ -59,4 +62,6 @@ Route::get('/user_changepassword', function () {
     return view('users.changepassword');
 })->name('user_changepassword');
 
-
+Route::get('/user_notification', function () {
+    return view('users.notification');
+})->name('user_notification');

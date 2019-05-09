@@ -23,7 +23,7 @@
         <div class="container">
             <div class="listsearch-maiwrap box-inside fl-wrap">
                 <div class="listsearch-header fl-wrap">
-                    <h3>Results For : <span>All restaurants</span></h3>
+                    <h3>Listing<span> all restaurants</span></h3>
                     <div class="listing-view-layout">
                         <ul>
                             <li><a class="grid active" href="#"><i class="fa fa-th-large"></i></a></li>
@@ -33,7 +33,7 @@
                 </div>
                 <!-- listsearch-input-wrap  -->
                 <div class="listsearch-input-wrap fl-wrap">
-                    <form action="/search/restaurants" method="get">
+                    <form action="/search/places/restaurants" method="get">
                         <div class="listsearch-input-item">
                             <i class="mbri-key single-i"></i>
                             <input name="keyword" type="text" placeholder="Keywords?" value="">
@@ -107,7 +107,7 @@
                             </div> -->
                             <h3><a href="{{url("/places/restaurants/$restaurant->id")}}">{{$restaurant->name}}</a></h3>
                             <div class="geodir-category-options fl-wrap">
-                                <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$restaurant->location}}</a></div>
+                                <div class="geodir-category-location"><h4><i class="fa fa-map-marker" aria-hidden="true"></i> {{$restaurant->location}}</h4></div>
                             </div>
                         </div>
                     </article>

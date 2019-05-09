@@ -12,15 +12,17 @@
             <!-- user-profile-menu end-->
             <!-- user-profile-menu-->
             <div class="user-profile-menu">
-                <h3>Plans</h3>
+                <h3>Extend</h3>
                 <ul>
                     <li><a href="{{route('wishlist')}}"><i class="fa fa-th-list"></i> My wishlist</a></li>
+                    <li><a href="{{route('show.shared.wishlist')}}"><i class="fa fa-th-list"></i> Shared wishlist</a></li>
+                    <li><a href="{{route('user_notification')}}"><i class="fa fa-bell"></i> Notifications <span>3</span></a></li>
                 </ul>
             </div>
             <!-- user-profile-menu end-->
             <a href="{{ route('logout') }}" class="log-out-btn" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">Log Out</a>
-            <form method="post" action="{{ route('logout') }}" id="logout-form" style="display: none">
+                    document.getElementById('logout-form-1').submit();">Log Out</a>
+            <form method="post" action="{{ route('logout') }}" id="logout-form-1" style="display: none">
                 @csrf
             </form>
         </div>

@@ -19,10 +19,11 @@ class EventsController extends Controller
      */
     public function index()
     {
+        //only show event is happening or still not happen
         $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
-        $events = Event::where('start_time', '>', $now)
-            ->orWhere(function($query) use ($now){
-                $query->where('start_time', '<', $now)
+        $events = Event::where('start_time', '>', $now) //still not happen
+            ->orWhere(function($query) use ($now){ //is happening
+                    $query->where('start_time', '<', $now)
                 ->where('end_time', '>', $now);
         })
             ->orderBy('start_time', 'asc')->paginate(9);
@@ -99,8 +100,12 @@ class EventsController extends Controller
 
     public function addEventToWishlist(Request $request, Event $event)
     {
+        $notification = array(
+            'message' => 'Added item successfully!',
+            'alert-type' => 'success'
+        );
         $request->user()->wishlistEvents()->syncWithoutDetaching([$event->id]);
-        return back();
+        return back()->with($notification);
     }
 
     public function removeEventFromWishlist(Request $request, Event $event)
@@ -125,15 +130,22 @@ class EventsController extends Controller
         $thursday = $wednesday->copy()->addDay();
         $friday = $thursday->copy()->addDay();
         $saturday = $friday->copy()->addDay()->toDateString();
-
         $weekend = Carbon::now('Asia/Ho_Chi_Minh')->endOfWeek()->toDateString();
+
         $keyword = $request->get('keyword');
         $district = $request->get('district');
         $date = $request->get('date');
-        $events = Event::where('start_time', '>', $now)->where('name', 'like', '%'.$keyword.'%');
+        $events = Event::whereRaw('LOWER(`name`) like ?', ['%'.strtolower($keyword).'%']);
 
         if($district == "All districts" && $date == "All"){
-            $events = $events->orderBy('start_time', 'asc')->paginate(9);
+            $events = $events->where(function($query) use ($now){
+                $query->where('start_time','>',$now)
+                ->orWhere(function($query1) use ($now){
+                    $query1->where('start_time','<',$now)
+                    ->where('end_time','>',$now);
+                });
+            })
+            ->orderBy('start_time', 'asc')->paginate(9);
         }
 
         elseif($district == "All districts"){ //date != All
@@ -144,13 +156,24 @@ class EventsController extends Controller
                     break;
                 case 'Tomorrow':
                     $events = $events->whereDate('start_time', '=', $tomorrow)->orderBy('start_time', 'asc')->paginate(9);
-                    // return dd($events);
                     break;
                 case 'This weekend':
-                    $events = $events->whereDate('start_time', '=', $saturday)->orderBy('start_time', 'asc')->paginate(9);
+                    // dd($saturday);
+                    $events = $events->where(function($query) use ($saturday){
+                        $query->whereDate('start_time', '=', $saturday)
+                        ->whereDate('end_time','=',$saturday);
+                    })->orWhere(function($query) use ($saturday, $weekend){
+                        $query->whereDate('start_time','=',$saturday)
+                        ->whereDate('end_time','=',$weekend);
+                    })->orWhere(function($query) use($weekend){
+                        $query->whereDate('start_time','=',$weekend)
+                        ->whereDate('end_time', '=', $weekend);
+                    })
+                    ->orderBy('start_time', 'asc')->paginate(9);
                     break;
                 default:
-                    # code...
+                    $start_date = date('Y-m-d', strtotime($date));
+                    $events = $events->whereDate('start_time', '=', $start_date)->orderBy('start_time', 'asc')->paginate(9);
                     break;
             }
         }
@@ -158,28 +181,53 @@ class EventsController extends Controller
         elseif ($date == "All") { //district != All districts
             # code...
             // $district = strtolower($district);
-            $events = $events->whereRaw('LOWER(`location`) like ?', ['%'.strtolower($district).'%'])->orderBy('start_time', 'asc')->paginate(9);
+            $events = $events->whereRaw('LOWER(`location`) like ?', ['%'.strtolower($district).'%'])
+            ->where(function($query) use ($now){
+                $query->where('start_time','>',$now)
+                ->orWhere(function($query1) use ($now){
+                    $query1->where('start_time','<',$now)
+                    ->where('end_time','>',$now);
+                });
+            })
+            ->orderBy('start_time', 'asc')->paginate(9);
         }
 
-        else{
+        else{ //both input
             switch ($date) {
                 case 'Today':
                     # code...
-                    $events = $events->where('location', 'like', '%'.$district.'%')->whereDate('start_time', '=', $today)->orderBy('start_time', 'asc')->paginate(9);
+                    $events = $events->whereRaw('LOWER(`location`) like ?', ['%'.strtolower($district).'%'])
+                    ->whereDate('start_time', '=', $today)->orderBy('start_time', 'asc')->paginate(9);
                     break;
                 case 'Tomorrow':
-                    $events = $events->where('location', 'like', '%'.$district.'%')->whereDate('start_time', '=', $tomorrow)->orderBy('start_time', 'asc')->paginate(9);
+                    $events = $events->whereRaw('LOWER(`location`) like ?', ['%'.strtolower($district).'%'])
+                    ->whereDate('start_time', '=', $tomorrow)->orderBy('start_time', 'asc')->paginate(9);
                     // return dd($events);
                     break;
                 case 'This weekend':
-                    $events = $events->where('location', 'like', '%'.$district.'%')->whereDate('start_time', '=', $saturday)->orderBy('start_time', 'asc')->paginate(9);
+                    $events = $events->whereRaw('LOWER(`location`) like ?', ['%'.strtolower($district).'%'])
+                    ->where(function($query) use ($saturday, $weekend){
+                        $query->whereDate('start_time', '=', $saturday)
+                        ->whereDate('end_time','=',$saturday)
+                        ->orWhere(function($query) use ($saturday, $weekend){
+                            $query->whereDate('start_time', '=', $saturday)
+                            ->whereDate('start_time', '=', $weekend)
+                            ->orWhere(function($query) use ($weekend){
+                                $query->whereDate('start_time', '=', $weekend)
+                                ->whereDate('end_time', '=', $weekend);
+                            });
+                        });
+                    })
+                    ->orderBy('start_time', 'asc')->paginate(9);
                     break;
                 default:
                     # code...
+                    $startdate = date('Y-m-d', strtotime($date));
+                    $events = $events->whereRaw('LOWER(`location`) like ?', ['%'.strtolower($district).'%'])
+                    ->whereDate('start_time', '=', $startdate)->orderBy('start_time', 'asc')->paginate(9);
                     break;
             }
         }
-
         $events->appends(array('keyword' => $keyword, 'district' => $district, 'date' => $date));
         return view('events.search', ['events' => $events, 'keyword' => $keyword]);
     }
@@ -209,7 +257,15 @@ class EventsController extends Controller
                     $famous_place_results->appends(array('category' => $category, 'distance' => $distance));
                     return view('famousplaces.nearby_results', ['famous_place_results' => $famous_place_results, 'name' => $name, 'distance' => $distance]);
                 case 'Events':
-                    $event_results = Event::IsWithinMaxDistance($lat, $lng, $distance)->where('start_time','>',$now)->paginate(9);
+                    $event_results = Event::IsWithinMaxDistance($lat, $lng, $distance)
+                    ->where(function($query) use ($now){
+                        $query->where('start_time','>',$now)
+                        ->orWhere(function($query1) use ($now){
+                            $query1->where('start_time','<',$now)
+                            ->where('end_time','>',$now);
+                        });
+                    })
+            ->orderBy('start_time', 'asc')->paginate(9);
                     $event_results->appends(array('category' => $category, 'distance' => $distance));
                     return view('events.nearby_results', ['event_results' => $event_results, 'name' => $name, 'distance' => $distance]);
                     break;

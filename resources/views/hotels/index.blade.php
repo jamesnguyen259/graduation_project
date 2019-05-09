@@ -23,7 +23,7 @@
         <div class="container">
             <div class="listsearch-maiwrap box-inside fl-wrap">
                 <div class="listsearch-header fl-wrap">
-                    <h3>Results For : <span>All Hotels</span></h3>
+                    <h3>Listing<span> all hotels</span></h3>
                     <div class="listing-view-layout">
                         <ul>
                             <li><a class="grid active" href="#"><i class="fa fa-th-large"></i></a></li>
@@ -33,7 +33,7 @@
                 </div>
                 <!-- listsearch-input-wrap  -->
                 <div class="listsearch-input-wrap fl-wrap">
-                    <form action="/search/hotels" method="get">
+                    <form action="/search/places/hotels" method="get">
                         <div class="listsearch-input-item">
                             <i class="mbri-key single-i"></i>
                             <input type="text" name="keyword" placeholder="Keywords?" value="">

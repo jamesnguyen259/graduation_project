@@ -1,5 +1,5 @@
-<footer class="main-footer dark-footer  ">
-    <div class="container">
+<footer class="main-footer dark-footer fixed-footer">
+    <!-- <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <div class="footer-widget fl-wrap">
@@ -76,17 +76,17 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="sub-footer fl-wrap">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
                     <div class="about-widget">
-                        <img src="images/logo.png" alt="">
+                        <img src="{{asset('images/logo4.png')}}" alt="">
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="copyright"> &#169; CityBook 2018 .  All rights reserved.</div>
+                    <div class="copyright"> Hanoitravel Using &#169; CityBook 2018 Template.  All rights reserved.</div>
                 </div>
                 <div class="col-md-4">
                     <div class="footer-social">

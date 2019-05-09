@@ -2,20 +2,6 @@
 
 @section('content')
 <!--  section  -->
-<section class="parallax-section" data-scrollax-parent="true">
-    <div class="bg par-elem "  data-bg="https://www.hanoicitybreaks.com/wp-content/uploads/2010/04/Hoan-Kiem-Lake.jpg" data-scrollax="properties: { translateY: '30%' }"></div>
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="section-title center-align">
-            <h2><span>Listings All Famous Places</span></h2>
-            <div class="breadcrumbs fl-wrap"><a href="#">Home</a><a href="#">Listings</a><span>Listings All Famous Places</span></div>
-            <span class="section-separator"></span>
-        </div>
-    </div>
-    <div class="header-sec-link">
-        <div class="container"><a href="#sec1" class="custom-scroll-link">Let's Start</a></div>
-    </div>
-</section>
 <!--  section  end-->
 <!--  section  -->
 <section class="gray-bg no-pading no-top-padding" id="sec1">
@@ -33,7 +19,7 @@
                 </div>
                 <!-- listsearch-input-wrap  -->
                 <div class="listsearch-input-wrap fl-wrap">
-                    <form action="/search/famous_places" method="get">
+                    <form action="/search/places/famous_places" method="get">
                         <div class="listsearch-input-item">
                             <i class="mbri-key single-i"></i>
                             <input name="keyword" type="text" placeholder="Keywords?" value="">
@@ -101,7 +87,7 @@
                             </div> -->
                             <h3><a href="{{url("/places/famous_places/$famous_place->id")}}">{{$famous_place->name}}</a></h3>
                             <div class="geodir-category-options fl-wrap">
-                                <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$famous_place->location}}</a></div>
+                                <div class="geodir-category-location"><h4><i class="fa fa-map-marker" aria-hidden="true"></i> {{$famous_place->location}}</h4></div>
                             </div>
                         </div>
                     </article>

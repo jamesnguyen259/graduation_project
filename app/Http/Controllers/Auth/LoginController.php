@@ -30,7 +30,7 @@ class LoginController extends Controller
             'message' => 'Sign-in successful!',
             'alert-type' => 'success'
         );
-        return redirect('/')->with($notification);
+        return back()->with($notification);
     }
     /**
      * Where to redirect users after login.

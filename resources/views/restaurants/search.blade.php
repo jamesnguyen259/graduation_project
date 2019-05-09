@@ -2,20 +2,6 @@
 
 @section('content')
 <!--  section  -->
-<section class="parallax-section" data-scrollax-parent="true">
-    <div class="bg par-elem "  data-bg="https://thumbor.mumu.agency/unsafe/1000x562/https://www.theransomnote.com/media/articles/rare-african-music-tops-trendbases-restaurant-background-music-charts/4ca464fe-54ae-457f-8680-702aaa8a13ab.jpg" data-scrollax="properties: { translateY: '30%' }"></div>
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="section-title center-align">
-            <h2><span>Listings All Restaurants</span></h2>
-            <div class="breadcrumbs fl-wrap"><a href="#">Home</a><a href="#">Listings</a><span>Listings All Restaurants</span></div>
-            <span class="section-separator"></span>
-        </div>
-    </div>
-    <div class="header-sec-link">
-        <div class="container"><a href="#sec1" class="custom-scroll-link">Let's Start</a></div>
-    </div>
-</section>
 <!--  section  end-->
 <!--  section  -->
 <section class="gray-bg no-pading no-top-padding" id="sec1">
@@ -33,7 +19,7 @@
                 </div>
                 <!-- listsearch-input-wrap  -->
                 <div class="listsearch-input-wrap fl-wrap">
-                    <form action="/search/restaurants" method="get">
+                    <form action="/search/places/restaurants" method="get">
                         <div class="listsearch-input-item">
                             <i class="mbri-key single-i"></i>
                             <input name="keyword" type="text" placeholder="Keywords?" value="">
@@ -73,17 +59,6 @@
                                 <option>My Duc</option>
                             </select>
                         </div>
-                    <!-- <div class="listsearch-input-item">
-                        <select data-placeholder="rating" class="chosen-select" style="display: none;">
-                            <option>All</option>
-                            <option>Not rated</option>
-                            <option>1 star</option>
-                            <option>2 stars</option>
-                            <option>3 stars</option>
-                            <option>4 stars</option>
-                            <option>5 stars</option>
-                        </select>
-                    </div> -->
                         <button type="submit" class="button fs-map-btn">Search</button>
                     </form>
                     <!-- <div class="more-filter-option">More Filters <span></span></div> -->
@@ -107,7 +82,7 @@
                             </div> -->
                             <h3><a href="{{url("/places/restaurants/$restaurant->id")}}">{{$restaurant->name}}</a></h3>
                             <div class="geodir-category-options fl-wrap">
-                                <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$restaurant->location}}</a></div>
+                                <div class="geodir-category-location"><h4><i class="fa fa-map-marker" aria-hidden="true"></i> {{$restaurant->location}}</h4></div>
                             </div>
                         </div>
                     </article>

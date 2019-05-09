@@ -91,6 +91,14 @@
                                         <h2>{{$famous_place->name}}</h2>
                                         <span class="section-separator"></span>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="fl-wrap list-single-header-column">
+                                            <div class="share-holder hid-share">
+                                                <div class="showshare"><span>Share </span><i class="fa fa-share"></i></div>
+                                                <div class="share-container  isShare"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

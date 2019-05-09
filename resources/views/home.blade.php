@@ -6,72 +6,6 @@
     <div class="slider-container-wrap fl-wrap">
         <div class="slider-container">
             <!-- slideshow-item -->
-            <!-- <div class="slider-item fl-wrap">
-                <div class="bg"  data-bg="https://previews.123rf.com/images/booblgum/booblgum1801/booblgum180100302/93879241-hanoi-vietnam-city-skyline-with-gray-buildings-isolated-on-white-background-vector-illustration-busi.jpg"></div>
-                <div class="overlay"></div>
-                <div class="hero-section-wrap fl-wrap">
-                    <div class="container">
-                        <div class="intro-item fl-wrap">
-                            <h2>We will help you to find all things in Hanoi</h2>
-                            <h3>Find great places , hotels , restourants , events.</h3>
-                        </div>
-                        <div class="main-search-input-wrap">
-                            <div class="main-search-input fl-wrap">
-                                <div class="main-search-input-item">
-                                    <input type="text" placeholder="What are you looking for?" value=""/>
-                                </div>
-                                <div class="main-search-input-item location" >
-                                    <select data-placeholder="District" class="chosen-select" >
-                                        <option>All district</option>
-                                        <option>Ba Dinh </option>
-                                        <option>Hoan Kiem </option>
-                                        <option>Tay Ho</option>
-                                        <option>Long Bien</option>
-                                        <option>Cau Giay</option>
-                                        <option>Dong Da</option>
-                                        <option>Hai Ba Trung</option>
-                                        <option>Hoang Mai</option>
-                                        <option>Thanh Xuan</option>
-                                        <option>Soc Son</option>
-                                        <option>Dong Anh</option>
-                                        <option>Gia Lam</option>
-                                        <option>Nam Tu Liem</option>
-                                        <option>Thanh Tri</option>
-                                        <option>Bac Tu Liem</option>
-                                        <option>Me Linh</option>
-                                        <option>Ha Dong</option>
-                                        <option>Son Tay</option>
-                                        <option>Ba Vi</option>
-                                        <option>Phuc Tho</option>
-                                        <option>Dan Phuong</option>
-                                        <option>Hoai Duc</option>
-                                        <option>Quoc Oai</option>
-                                        <option>Thach That</option>
-                                        <option>Chuong My</option>
-                                        <option>Thanh Oai</option>
-                                        <option>Thuong Tin</option>
-                                        <option>Phu Xuyen</option>
-                                        <option>Ung Hoa</option>
-                                        <option>My Duc</option>
-                                    </select>
-                                </div>
-                                <div class="main-search-input-item">
-                                    <select data-placeholder="All Categories" class="chosen-select" >
-                                        <option>All Categories</option>
-                                        <option>Hotels</option>
-                                        <option>Restaurants</option>
-                                        <option>Famous places</option>
-                                        <option>Events</option>
-                                    </select>
-                                </div>
-                                <button class="main-search-button" onclick="window.location.href='listings-half-screen-map-list.html'">Search</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!--  slideshow-item end  -->
-            <!-- slideshow-item -->
             <div class="slider-item fl-wrap">
                 <div class="bg bg-ser"   data-bg="https://i.pinimg.com/originals/9a/ed/52/9aed52fc3bc091ebcfb38fede16c2ed2.jpg"></div>
                 <div class="overlay"></div>
@@ -201,7 +135,6 @@
             <!-- gallery-item end-->
         </div>
         <!-- portfolio end -->
-        <a href="listing.html" class="btn  big-btn circle-btn dec-btn  color-bg flat-btn">View All<i class="fa fa-eye"></i></a>
     </div>
 </section>
 <!-- section end -->
@@ -248,6 +181,7 @@
         <div class="swiper-button-prev sw-btn"><i class="fa fa-long-arrow-left"></i></div>
         <div class="swiper-button-next sw-btn"><i class="fa fa-long-arrow-right"></i></div>
     </div>
+    <a href="{{url('/events')}}" class="btn  big-btn circle-btn dec-btn  color-bg flat-btn">View All<i class="fa fa-eye"></i></a>
     <!--  carousel end-->
 </section>
 <!-- section end -->

@@ -17,6 +17,27 @@
                     </div>
                 </div>
                 <h2>{{$event->name}}<span> - Hosted By </span><a href="#">{{$event->organizer_name}}</a> </h2>
+                <span class="section-separator"></span>
+                <div class="clearfix"></div>
+                <div class="row">
+                        <div class="col-md-6">
+                            <div class="list-single-header-contacts fl-wrap">
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-map-marker"></i><a  href="#">{{$event->location}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="fl-wrap list-single-header-column">
+                                <div class="share-holder hid-share">
+                                    <div class="showshare"><span>Share </span><i class="fa fa-share"></i></div>
+                                    <div class="share-container  isShare"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
@@ -24,7 +45,7 @@
 <!--  section end -->
 <!--  If event->end_time != NULL -->
 @if($event->end_time)
-    @if($event->end_time > $now)
+    @if($event->end_time > $now)  <!--  Not ended -->
     <div class="scroll-nav-wrapper fl-wrap">
         <div class="container">
             <nav class="scroll-nav scroll-init">
@@ -171,13 +192,19 @@
     <!-- section -->
     @else
     <section class="gray-section no-top-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <h1>This event  has ended!</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="list-single-main-wrapper fl-wrap">
+                        <div class="list-single-main-item fl-wrap">
+                            <div class="list-single-main-item-title fl-wrap">
+                                    <h3>This event has ended.</h3>
+                                </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
     </section>
     @endif
 <!--  event->end_time == NULL -->
@@ -249,7 +276,7 @@
                                         <button type="submit" class="button fs-map-btn">Go!</button>
                                     </form>
                                 </div>
-                        </div>
+                            </div>
                         </div>
                     </div>
                     <!--box-widget-wrap -->
@@ -329,34 +356,23 @@
     <!-- section -->
     @else
         <section class="gray-section no-top-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <h1>This event  has ended!</h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="list-single-main-wrapper fl-wrap">
+                            <div class="list-single-main-item fl-wrap">
+                                <div class="list-single-main-item-title fl-wrap">
+                                        <h3>This event has ended.</h3>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
         </section>
     @endif
 
 @endif
-<!-- <section class="gradient-bg">
-    <div class="cirle-bg">
-        <div class="bg" data-bg="images/bg/circle.png"></div>
-    </div>
-    <div class="container">
-        <div class="join-wrap fl-wrap">
-            <div class="row">
-                <div class="col-md-8">
-                    <h3>Join our online community</h3>
-                    <p>Grow your marketing and be happy with your online business</p>
-                </div>
-                <div class="col-md-4"><a href="#" class="join-wrap-btn modal-open">Sign Up <i class="fa fa-sign-in"></i></a></div>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!-- section end-->
 @endsection
 
 @section('script')

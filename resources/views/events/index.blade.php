@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('style')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+@endsection
+
 @section('content')
 <!--  section  -->
 <section class="parallax-section" data-scrollax-parent="true">
@@ -23,7 +27,7 @@
         <div class="container">
             <div class="listsearch-maiwrap box-inside fl-wrap">
                 <div class="listsearch-header fl-wrap">
-                    <h3>Results For : <span>All events</span></h3>
+                    <h3>Listing<span> all events</span></h3>
                     <div class="listing-view-layout">
                         <ul>
                             <li><a class="grid active" href="#"><i class="fa fa-th-large"></i></a></li>
@@ -79,8 +83,9 @@
                                 <option>Today</option>
                                 <option>Tomorrow</option>
                                 <option>This weekend</option>
-                                <option>Pick a date</option>
+                                <option id="pick-date">Pick a date</option>
                             </select>
+                            <input type="text" id="datepicker" style="visibility: hidden;">
                         </div>
                         <button type="submit" class="button fs-map-btn">Search</button>
                     </form>
@@ -104,7 +109,8 @@
                             </div> -->
                             <h3><a href="{{url("/events/$event->id")}}">{{$event->name}}</a></h3>
                             <div class="geodir-category-options fl-wrap">
-                                <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$event->location}}</a></div>
+                                <div class="geodir-category-location"><h4><i class="fa fa-map-marker" aria-hidden="true"></i> {{$event->location}}</h4>
+                                </div>
                             </div>
                         </div>
                     </article>
@@ -120,22 +126,23 @@
 </section>
 <!--  section  end-->
 <div class="limit-box fl-wrap"></div>
-<!--  section  -->
-<!-- <section class="gradient-bg">
-    <div class="cirle-bg">
-        <div class="bg" data-bg="asset('images/bg/circle.png')"></div>
-    </div>
-    <div class="container">
-        <div class="join-wrap fl-wrap">
-            <div class="row">
-                <div class="col-md-8">
-                    <h3>Join our online community</h3>
-                    <p>Grow your marketing and be happy with your online business</p>
-                </div>
-                <div class="col-md-4"><a href="#" class="join-wrap-btn modal-open">Sign Up <i class="fa fa-sign-in"></i></a></div>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!--  section  end-->
+@endsection
+
+@section('script')
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(function(){
+    $("#datepicker").datepicker({
+        onSelect: function(date){
+            $("#pick-date").val(date);
+            $("#pick-date").text(date);
+            $("select[name='date']").val(date);
+            $("select[name='date'] + div.nice-select > span.current").text(date);
+        }
+    })
+    $("ul.list li[data-value='Pick a date']").on("click",function(){
+        $("#datepicker").datepicker("show");
+    })
+});
+</script>
 @endsection

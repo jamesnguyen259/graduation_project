@@ -67,4 +67,19 @@ class User extends Authenticatable
                     ->withPivot(['created_at'])
                     ->orderBy('pivot_created_at', 'desc');
     }
+
+    public function shareWishlists()
+    {
+        return $this->belongsToMany(User::class, 'shareables', 'sharer_id', 'shared_id');
+    }
+
+    public function addShare(User $user)
+    {
+        $this->shareWishlists()->syncWithoutDetaching($user->id);
+    }
+
+    public function removeShare(User $user)
+    {
+        $this->shareWishlists()->detach($user->id);
+    }
 }

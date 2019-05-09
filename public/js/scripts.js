@@ -750,3 +750,17 @@ $(function () {
     initCitybook();
     initparallax();
 });
+
+// $(function(){
+//     $("#datepicker").datepicker({
+//         onSelect: function(date){
+//             $("#pick-date").val(date);
+//             $("#pick-date").text(date);
+//             $("select[name='date']").val(date);
+//             $("select[name='date'] + div.nice-select > span.current").text(date);
+//         }
+//     })
+//     $("ul.list li[data-value='Pick a date']").on("click",function(){
+//         $("#datepicker").datepicker("show");
+//     })
+// });

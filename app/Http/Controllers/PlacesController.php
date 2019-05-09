@@ -175,7 +175,8 @@ class PlacesController extends Controller
                 $district = $request->get('district');
                 $rating = $request->get('rating');
 
-                $hotels = Hotel::where('name','like','%'.$keyword.'%');
+                // $hotels = Hotel::where('name','like','%'.$keyword.'%');
+                $hotels = Hotel::whereRaw('LOWER(`name`) like ?', ['%'.strtolower($keyword).'%']);
                 //Not choose anything => all
                 if($district == "All districts" && $rating == "All"){
                     $hotels = $hotels->orderBy('name','asc')->paginate(9);
@@ -213,7 +214,8 @@ class PlacesController extends Controller
         elseif($type == "restaurants"){
             $keyword = $request->get('keyword');
             $district = $request->get('district');
-            $restaurants = Restaurant::where('name' , 'like' , '%'.$keyword.'%');
+            // $restaurants = Restaurant::where('name' , 'like' , '%'.$keyword.'%');
+            $restaurants = Restaurant::whereRaw('LOWER(`name`) like ?', ['%'.strtolower($keyword).'%']);
             //Not choose anything => all
             if($district == "All districts"){
                 $restaurants = $restaurants->orderBy('name', 'asc')->paginate(9);
@@ -272,7 +274,14 @@ class PlacesController extends Controller
                     $famous_place_results->appends(array('category' => $category, 'distance' => $distance));
                     return view('famousplaces.nearby_results', ['famous_place_results' => $famous_place_results, 'name' => $name, 'distance' => $distance]);
                 case 'Events':
-                    $event_results = Event::IsWithinMaxDistance($lat, $lng, $distance)->where('start_time','>',$now)->paginate(9);
+                    $event_results = Event::IsWithinMaxDistance($lat, $lng, $distance)
+                        ->where(function($query) use ($now){
+                            $query->where('start_time','>',$now)
+                            ->orWhere(function($query1) use ($now){
+                                $query1->where('start_time','<',$now)
+                                ->where('end_time','>',$now);
+                            });
+                    })->paginate(9);
                     $event_results->appends(array('category' => $category, 'distance' => $distance));
                     return view('events.nearby_results', ['event_results' => $event_results, 'name' => $name, 'distance' => $distance]);
                     break;
@@ -302,7 +311,14 @@ class PlacesController extends Controller
                     $famous_place_results->appends(array('category' => $category, 'distance' => $distance));
                     return view('famousplaces.nearby_results', ['famous_place_results' => $famous_place_results, 'name' => $name, 'distance' => $distance]);
                 case 'Events':
-                    $event_results = Event::IsWithinMaxDistance($lat, $lng, $distance)->where('start_time','>',$now)->paginate(9);
+                    $event_results = Event::IsWithinMaxDistance($lat, $lng, $distance)
+                        ->where(function($query) use ($now){
+                                $query->where('start_time','>',$now)
+                                ->orWhere(function($query1) use ($now){
+                                    $query1->where('start_time','<',$now)
+                                    ->where('end_time','>',$now);
+                                });
+                        })->paginate(9);
                     $event_results->appends(array('category' => $category, 'distance' => $distance));
                     return view('events.nearby_results', ['event_results' => $event_results, 'name' => $name, 'distance' => $distance]);
                     break;
@@ -332,7 +348,14 @@ class PlacesController extends Controller
                     $famous_place_results->appends(array('category' => $category, 'distance' => $distance));
                     return view('famousplaces.nearby_results', ['famous_place_results' => $famous_place_results, 'name' => $name, 'distance' => $distance]);
                 case 'Events':
-                    $event_results = Event::IsWithinMaxDistance($lat, $lng, $distance)->where('start_time','>',$now)->paginate(9);
+                    $event_results = Event::IsWithinMaxDistance($lat, $lng, $distance)
+                        ->where(function($query) use ($now){
+                                $query->where('start_time','>',$now)
+                                ->orWhere(function($query1) use ($now){
+                                    $query1->where('start_time','<',$now)
+                                    ->where('end_time','>',$now);
+                                });
+                            })->paginate(9);
                     $event_results->appends(array('category' => $category, 'distance' => $distance));
                     return view('events.nearby_results', ['event_results' => $event_results, 'name' => $name, 'distance' => $distance]);
                     break;

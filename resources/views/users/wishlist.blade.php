@@ -20,7 +20,13 @@
                         </div>
                         <!-- dashboard-list end-->
                         @if( ($events->count() == 0) && ($hotels->count() == 0) && ($restaurants->count() == 0) && ($famous_places->count() == 0))
-                        No items found.
+                            <div class="dashboard-list">
+                                <div class="dashboard-message">
+                                    <div class="dashboard-listing-table-text">
+                                        <h4>No items founded!</h4>
+                                    </div>
+                                </div>
+                            </div>
                         @else
                             <!-- dashboard-list end-->
                             @foreach($events as $event)
@@ -119,6 +125,28 @@
                                 </div>
                             @endforeach
                         @endif
+                        <div class="dashboard-list">
+                                <div class="dashboard-message">
+                                    <div class="dashboard-listing-table-text">
+                                        <h4>Share my wishlist to another user?</h4>
+                                    </div>
+                                    <div class="listsearch-input-wrap fl-wrap">
+                                        <form action="{{route('add.share.wishlist')}}" method="POST">
+                                            {{ csrf_field() }}
+                                            <div class="listsearch-input-item">
+                                                <select name="email" data-placeholder="category" class="chosen-select" style="display: none;">
+                                                    @foreach($users as $user)
+                                                    <option>{{$user->email}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <!-- </div> -->
+                                            <span class="section-separator"></span>
+                                            <button type="submit" class="button fs-map-btn">Share</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         <!-- dashboard-list end-->
                     </div>
                 </div>
@@ -130,22 +158,4 @@
 </section>
 <!-- section end -->
 <div class="limit-box fl-wrap"></div>
-<!--section -->
-<section class="gradient-bg">
-    <div class="cirle-bg">
-        <div class="bg" data-bg="images/bg/circle.png"></div>
-    </div>
-    <div class="container">
-        <div class="join-wrap fl-wrap">
-            <div class="row">
-                <div class="col-md-8">
-                    <h3>Do You Have Questions ?</h3>
-                    <p>Lorem ipsum dolor sit amet, harum dolor nec in, usu molestiae at no.</p>
-                </div>
-                <div class="col-md-4"><a href="contacts.html" class="join-wrap-btn">Get In Touch <i class="fa fa-envelope-o"></i></a></div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- section end -->
 @endsection
